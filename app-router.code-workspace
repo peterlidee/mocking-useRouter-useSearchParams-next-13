@@ -6,7 +6,8 @@
   ],
   "settings": {
     "files.exclude": {
-      "node_modules": true
+      "node_modules": true,
+      ".swc": true
     },
     "editor.tabSize": 2,
     "cSpell.enableFiletypes": ["!javascript", "!typescriptreact"]
