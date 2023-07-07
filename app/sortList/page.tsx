@@ -12,7 +12,7 @@ type Props = {
   };
 };
 
-export default function page({ searchParams }: Props) {
+export default function Page({ searchParams }: Props) {
   const sortOrderParam = searchParams.sortOrder;
   let sortOrder: SortOrder = 'asc';
   if ('sortOrder' in searchParams && sortOrderParam) {
