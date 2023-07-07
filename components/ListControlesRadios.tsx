@@ -3,7 +3,7 @@
 import { SortOrder } from '@/types/SortOrder';
 import useSort from '@/hooks/useSort';
 
-export default function ListControles() {
+export default function ListControlesRadios() {
   const { sortOrder, handleSort } = useSort();
   return (
     <fieldset>

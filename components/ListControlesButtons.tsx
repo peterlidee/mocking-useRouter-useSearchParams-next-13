@@ -2,7 +2,7 @@
 
 import useSort from '@/hooks/useSort';
 
-export default function ListControles() {
+export default function ListControlesButtons() {
   const { sortOrder, handleSort } = useSort();
   const sortOrderFull = sortOrder === 'asc' ? 'ascending' : 'descending';
 
