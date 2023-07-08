@@ -1,11 +1,12 @@
 import { SortOrder } from '@/types/SortOrder';
 
+const list = ['Banana', 'Apple', 'Lemon', 'Cherry'];
+
 type Props = {
-  list: string[];
   sortOrder: SortOrder;
 };
 
-export default function List({ sortOrder, list }: Props) {
+export default function List({ sortOrder }: Props) {
   const sortedList = [...list].sort((a, b) => {
     if (sortOrder === 'asc') {
       return a > b ? 1 : -1;
