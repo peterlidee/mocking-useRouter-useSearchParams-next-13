@@ -7,7 +7,6 @@ const list = ['Banana', 'Apple', 'Lemon', 'Cherry'];
 
 type Props = {
   searchParams: {
-    foo?: string;
     sortOrder?: SortOrder;
   };
 };
