@@ -48,6 +48,18 @@ describe('app/sortList/page.js', () => {
       );
     });
 
+    test('It passes asc when faulty sortOrder', () => {
+      isValidSortOrder.mockReturnValue(false);
+      render(<Page searchParams={{ sortOrder: 'foobar' }} />);
+      expect(isValidSortOrder).toHaveBeenCalledWith('foobar');
+      expect(List).toHaveBeenCalledWith(
+        expect.objectContaining({
+          sortOrder: 'asc',
+        }),
+        expect.anything()
+      );
+    });
+
     test('It passes asc when sortOrder asc', () => {
       isValidSortOrder.mockReturnValue(true);
       render(<Page searchParams={{ sortOrder: 'asc' }} />);
