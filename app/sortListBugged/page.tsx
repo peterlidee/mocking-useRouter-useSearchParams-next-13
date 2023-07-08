@@ -3,8 +3,6 @@ import isValidSortOrder from '@/lib/isValidSortOrder';
 import ListControlesRadios from '@/components/ListControlesRadios';
 import List from '@/components/List';
 
-const list = ['Banana', 'Apple', 'Lemon', 'Cherry'];
-
 type Props = {
   searchParams: {
     sortOrder?: SortOrder;
@@ -22,7 +20,7 @@ export default function Page({ searchParams }: Props) {
   return (
     <>
       <ListControlesRadios />
-      <List sortOrder={sortOrder} list={list} />
+      <List sortOrder={sortOrder} />
     </>
   );
 }
