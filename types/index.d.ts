@@ -1,4 +1,4 @@
-export type SortOrder = 'asc' | 'desc';
 export type SearchParams = {
-  sortOrder?: SortOrder;
+  sortOrder?: string;
 };
+export type SortOrder = 'asc' | 'desc';
