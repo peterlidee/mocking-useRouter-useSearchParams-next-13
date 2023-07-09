@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import ListControlesRadios from '../ListControlesRadios';
 import useSort from '../../hooks/useSort';
 
@@ -18,16 +19,11 @@ function setup(sortOrder) {
 }
 
 describe('@components/ListControlesRadios.tsx', () => {
-  describe('It renders', () => {
-    test('It renders "sort order:"', () => {
-      setup('asc');
-      expect(screen.getByText(/sort order:/i)).toBeInTheDocument();
-    });
-    test('It displays 2 radio inputs', () => {
-      const { radioAsc, radioDesc } = setup('asc');
-      expect(radioAsc).toBeInTheDocument();
-      expect(radioDesc).toBeInTheDocument();
-    });
+  test('It renders', () => {
+    const { radioAsc, radioDesc } = setup('');
+    expect(screen.getByText(/sort order:/i)).toBeInTheDocument();
+    expect(radioAsc).toBeInTheDocument();
+    expect(radioDesc).toBeInTheDocument();
   });
 
   test('It checks the correct input on asc', () => {

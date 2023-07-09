@@ -1,6 +1,6 @@
 'use client';
 
-import { SortOrder } from '@/types/SortOrder';
+import { SortOrder } from '@/types';
 import useSort from '@/hooks/useSort';
 
 export default function ListControlesRadios() {
