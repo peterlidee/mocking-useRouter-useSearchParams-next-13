@@ -1,20 +1,12 @@
-import isValidSortOrder from '@/lib/isValidSortOrder';
-import { SortOrder } from '@/types/SortOrder';
+import { SortOrder } from '@/types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import getSortOrderFromUseSearchParams from '../lib/getSortOrderFromUseSearchParams';
 
 export default function useSort() {
   const params = useSearchParams();
-  const sortOrderParam = params.get('sortOrder');
   const pathname = usePathname();
   const router = useRouter();
-
-  let sortOrder: SortOrder = 'asc';
-  // type narrow
-  if (params.has('sortOrder') && sortOrderParam) {
-    if (isValidSortOrder(sortOrderParam)) {
-      sortOrder = sortOrderParam;
-    }
-  }
+  const sortOrder = getSortOrderFromUseSearchParams(params);
 
   const handleSort = (value: SortOrder) => {
     const newParams = new URLSearchParams(params.toString());

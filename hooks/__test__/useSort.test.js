@@ -1,9 +1,9 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import isValidSortOrder from '../../lib/isValidSortOrder';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import useSort from '../useSort';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import getSortOrderFromUseSearchParams from '../../lib/getSortOrderFromUseSearchParams';
 
 const pushMock = jest.fn();
 // mock next/navigation
@@ -14,16 +14,13 @@ jest.mock('next/navigation', () => ({
     push: pushMock,
   })),
 }));
+jest.mock('../../lib/getSortOrderFromUseSearchParams');
+getSortOrderFromUseSearchParams.mockReturnValue('aaaa');
 
-jest.mock('../../lib/isValidSortOrder');
-
-function setup(param = 'asc', hasParam = true, isValidParam, toString = '') {
+function setup(toString = '') {
   useSearchParams.mockReturnValue({
-    get: () => param,
-    has: () => hasParam,
     toString: () => toString,
   });
-  isValidSortOrder.mockReturnValue(isValidParam);
   render(<TestComponent />);
   const heading = screen.getByRole('heading', { level: 1 });
   const button = screen.getByRole('button');
@@ -35,52 +32,20 @@ function TestComponent() {
   return (
     <>
       <h1>{sortOrder}</h1>
-      <button onClick={() => handleSort('aaaa')}>sort</button>
+      <button onClick={() => handleSort('bbbb')}>sort</button>
     </>
   );
 }
 
 describe('hooks/useSort in TestComponent', () => {
   test('TestComponent renders', () => {
-    const { heading, button } = setup('asc', true, true);
+    const { heading, button } = setup();
     expect(useSearchParams).toHaveBeenCalled();
     expect(usePathname).toHaveBeenCalled();
     expect(useRouter).toHaveBeenCalled();
 
-    expect(heading).toHaveTextContent('asc');
+    expect(heading).toHaveTextContent('aaaa');
     expect(button).toBeInTheDocument();
-  });
-
-  describe('useSort hook returns correct sortOrder', () => {
-    test('It returns "asc" when no sortOrder', () => {
-      const { heading, button } = setup('', false, false);
-      expect(heading).toHaveTextContent('asc');
-    });
-
-    test('It returns "asc" when sortOrder undefined', () => {
-      const { heading } = setup(undefined, true, false);
-      expect(heading).toHaveTextContent('asc');
-    });
-
-    test('It returns "asc" when sortOrder foobar', () => {
-      const { heading } = setup('foobar', true, false);
-      expect(heading).toHaveTextContent('asc');
-    });
-
-    test('It returns "foobar" when sortOrder foobar yet we set isValidSortOrder to true', () => {
-      const { heading } = setup('foobar', true, true);
-      expect(heading).toHaveTextContent('foobar');
-    });
-
-    test('It returns "asc" when sortOrder is asc', () => {
-      const { heading } = setup('asc', true, true);
-      expect(heading).toHaveTextContent('asc');
-    });
-
-    test('It returns "desc" when sortOrder is desc', () => {
-      const { heading } = setup('desc', true, true);
-      expect(heading).toHaveTextContent('desc');
-    });
   });
 
   describe('handleSort function, returned from useSort works correctly', () => {
@@ -88,23 +53,23 @@ describe('hooks/useSort in TestComponent', () => {
       const user = userEvent.setup();
       const { button } = setup();
       await user.click(button);
-      expect(pushMock).toHaveBeenCalledWith(`example.com?sortOrder=aaaa`);
+      expect(pushMock).toHaveBeenCalledWith(`example.com?sortOrder=bbbb`);
     });
 
     test('It adds our sortOrder parameter to existing parameters', async () => {
       const user = userEvent.setup();
-      const { button } = setup('asc', true, true, 'foo=bar');
+      const { button } = setup('foo=bar');
       await user.click(button);
       expect(pushMock).toHaveBeenCalledWith(
-        `example.com?foo=bar&sortOrder=aaaa`
+        `example.com?foo=bar&sortOrder=bbbb`
       );
     });
 
     test('It adds overwrites an existing sortOrder parameter', async () => {
       const user = userEvent.setup();
-      const { button } = setup('asc', true, true, 'sortOrder=bbbb');
+      const { button } = setup('sortOrder=cccc');
       await user.click(button);
-      expect(pushMock).toHaveBeenCalledWith(`example.com?sortOrder=aaaa`);
+      expect(pushMock).toHaveBeenCalledWith(`example.com?sortOrder=bbbb`);
     });
   });
 });
