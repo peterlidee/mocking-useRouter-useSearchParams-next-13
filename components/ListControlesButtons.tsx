@@ -4,11 +4,9 @@ import useSort from '@/hooks/useSort';
 
 export default function ListControlesButtons() {
   const { sortOrder, handleSort } = useSort();
-  const sortOrderFull = sortOrder === 'asc' ? 'ascending' : 'descending';
-
   return (
     <div>
-      <div>sort order: {sortOrderFull}</div>
+      <div>sort order: {sortOrder === 'asc' ? 'ascending' : 'descending'}</div>
       <button onClick={() => handleSort('asc')}>sort ascending</button>
       <button onClick={() => handleSort('desc')}>sort descending</button>
     </div>

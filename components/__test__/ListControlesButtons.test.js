@@ -12,40 +12,34 @@ function setup(sortOrder) {
     handleSort: handleSortMock,
   });
   render(<ListControlesButtons />);
+  const buttonAsc = screen.getByRole('button', { name: /sort ascending/i });
+  const buttonDesc = screen.getByRole('button', {
+    name: /sort descending/i,
+  });
+  return { buttonAsc, buttonDesc };
 }
 
 describe('@components/ListControlesButtons.tsx', () => {
-  describe('It renders', () => {
-    test('It renders "sort order:"', () => {
-      setup('asc');
-      expect(screen.getByText(/sort order:/i)).toBeInTheDocument();
-    });
-    test('It displays ascending when useSort.sortOrder = asc', () => {
-      setup('asc');
-      expect(screen.getByText(/sort order: ascending/i)).toBeInTheDocument();
-    });
-    test('It displays descending when useSort.sortOrder = desc', () => {
-      setup('desc');
-      expect(screen.getByText(/sort order: descending/i)).toBeInTheDocument();
-    });
-    test('It displays 2 buttons', () => {
-      setup('asc');
-      expect(
-        screen.getByRole('button', { name: 'sort ascending' })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: 'sort descending' })
-      ).toBeInTheDocument();
-    });
+  test('It renders', () => {
+    const { buttonAsc, buttonDesc } = setup();
+    expect(screen.getByText(/sort order: /i)).toBeInTheDocument();
+    expect(buttonAsc).toBeInTheDocument();
+    expect(buttonDesc).toBeInTheDocument();
+  });
+
+  test('It displays sort order: ascending', () => {
+    setup('asc');
+    expect(screen.getByText(/sort order: ascending/i)).toBeInTheDocument();
+  });
+
+  test('It displays sort order: descending', () => {
+    setup('desc');
+    expect(screen.getByText(/sort order: descending/i)).toBeInTheDocument();
   });
 
   test('It calls handleSort with the correct argument on button clicks', async () => {
     const user = userEvent.setup();
-    setup('asc');
-    const buttonAsc = screen.getByRole('button', { name: /sort ascending/i });
-    const buttonDesc = screen.getByRole('button', {
-      name: /sort descending/i,
-    });
+    const { buttonAsc, buttonDesc } = setup();
     await user.click(buttonAsc);
     expect(handleSortMock).toHaveBeenCalledWith('asc');
     await user.click(buttonDesc);
