@@ -21,7 +21,7 @@ function setup(sortOrder) {
 
 describe('@components/ListControlesButtons.tsx', () => {
   test('It renders', () => {
-    const { buttonAsc, buttonDesc } = setup();
+    const { buttonAsc, buttonDesc } = setup('');
     expect(screen.getByText(/sort order: /i)).toBeInTheDocument();
     expect(buttonAsc).toBeInTheDocument();
     expect(buttonDesc).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('@components/ListControlesButtons.tsx', () => {
 
   test('It calls handleSort with the correct argument on button clicks', async () => {
     const user = userEvent.setup();
-    const { buttonAsc, buttonDesc } = setup();
+    const { buttonAsc, buttonDesc } = setup('');
     await user.click(buttonAsc);
     expect(handleSortMock).toHaveBeenCalledWith('asc');
     await user.click(buttonDesc);
