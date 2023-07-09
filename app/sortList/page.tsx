@@ -1,22 +1,14 @@
-import { SortOrder } from '@/types/SortOrder';
-import isValidSortOrder from '@/lib/isValidSortOrder';
-import List from '@/components/List';
+import { SearchParams } from '@/types';
+import getSortOrderFromSearchParams from '@/lib/getSortOrderFromSearchParams';
 import ListControlesButtons from '@/components/ListControlesButtons';
+import List from '@/components/List';
 
 type Props = {
-  searchParams: {
-    sortOrder?: SortOrder;
-  };
+  searchParams: SearchParams;
 };
 
 export default function Page({ searchParams }: Props) {
-  const sortOrderParam = searchParams.sortOrder;
-  let sortOrder: SortOrder = 'asc';
-  if ('sortOrder' in searchParams && sortOrderParam) {
-    if (isValidSortOrder(sortOrderParam)) {
-      sortOrder = sortOrderParam;
-    }
-  }
+  const sortOrder = getSortOrderFromSearchParams(searchParams);
   return (
     <>
       <ListControlesButtons />
