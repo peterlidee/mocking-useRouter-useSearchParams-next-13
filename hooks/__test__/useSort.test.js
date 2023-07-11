@@ -5,15 +5,14 @@ import useSort from '../useSort';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import getSortOrderFromUseSearchParams from '../../lib/getSortOrderFromUseSearchParams';
 
+jest.mock('next/navigation');
 const pushMock = jest.fn();
-// mock next/navigation
-jest.mock('next/navigation', () => ({
-  useSearchParams: jest.fn(),
-  usePathname: jest.fn(() => 'example.com'),
-  useRouter: jest.fn(() => ({
-    push: pushMock,
-  })),
-}));
+
+usePathname.mockReturnValue('example.com');
+useRouter.mockReturnValue({
+  push: pushMock,
+});
+
 jest.mock('../../lib/getSortOrderFromUseSearchParams');
 getSortOrderFromUseSearchParams.mockReturnValue('aaaa');
 
