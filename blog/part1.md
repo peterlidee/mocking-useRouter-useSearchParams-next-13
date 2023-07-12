@@ -324,4 +324,4 @@ In the end, the project is quite simple:
    1. Gets the query string via `useSearchParams` hook. It validates this string using `getSortOrderFromUseSearchParams` and returns `sortOrder` (`asc` | `desc`).
    2. Creates an event handler for the buttons: `handleSort`. When called, this function creates a new `URLSearchParams` from the readonly one that `useSearchParams` returns. It adds (or overwrites) `sortOrder` with a new value. It then constructs a new route from `usePathname` and our new `URLSearchParams` and pushes that to the router.
 
-In the [next parts](TODO) we are going to test all of these components and functions with `Jest` and `rtl`.
+In the [next parts](https://dev.to/peterlidee/-mocking-urlsearchparams-searchparams-and-usesearchparams-with-jest-539g) we are going to test all of these components and functions with `Jest` and `rtl`.

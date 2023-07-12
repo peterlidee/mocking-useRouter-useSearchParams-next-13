@@ -263,7 +263,7 @@ This test compiles everything we talked about. We simulate a button click in `<T
 
 Finally, the `push` method is called with a route:
 
-```
+```js
 router.push(`${pathname}?${newParams.toString()}`);
 ```
 

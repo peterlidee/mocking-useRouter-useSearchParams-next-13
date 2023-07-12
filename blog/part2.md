@@ -1,6 +1,6 @@
 # Mocking URLSearchParams, searchParams and useSearchParams with Jest
 
-In the [previous part](TODO) we setup an example of a little project that uses the `searchParams` page prop, the `useSearchParams` hook and the `useRouter` hook. We went over all the files to get a good understanding how everything works.
+In the [previous part](https://dev.to/peterlidee/using-searchparams-usesearchparams-and-userouter-in-next-13-4623) we setup an example of a little project that uses the `searchParams` page prop, the `useSearchParams` hook and the `useRouter` hook. We went over all the files to get a good understanding how everything works.
 
 In this part, we will test all of the files, functions and hooks. The files and test can be found on [github](https://github.com/peterlidee/mocking-useRouter-useSearchParams-next-13/tree/main).
 
@@ -183,7 +183,6 @@ Our function `getSortOrderFromUseSearchParams` uses the methods `.has()` and `.g
   get: () => 'some value',
   has: () => true // (or false)
 }
-
 ```
 
 As we need to run multiple tests on this function, I wrote a setup function to keep things DRY:
@@ -329,4 +328,4 @@ describe('@/lib/getSortOrderFromUseSearchParams', () => {
 
 The main takeaway there is how we 'mocked' `URLSeachParams`. Our function used 2 methods from this object: `get()` and `has()`. By simply creating an object with these 2 methods, we successfully mocked `URLSeachParams`. On top of that we added flexibility with a setup function. This allowed us to test different scenarios.
 
-In the [third and last part](todo) we will test our custom `useSort` hook.
+In the [third and last part](https://dev.to/peterlidee/-mocking-usesearchparams-and-userouter-with-jest-in-next-13-nextnavigation-15bd) we will test our custom `useSort` hook.
