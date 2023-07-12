@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Mocking app router, examples TODO',
+  title: 'Sort fruit app',
 };
 
 export default function RootLayout({
