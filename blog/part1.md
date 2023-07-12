@@ -2,7 +2,7 @@
 
 A while back I wrote a fairly popular article on dev.to: [How to mock Next router with Jest ](https://dev.to/peterlidee/how-to-mock-next-router-with-jest-3p6b). Since then, `Next 13` has arrived and brought us a new router and new router hooks.
 
-In this first part we will build a little project using all these new hooks. In the second and third parts we will learn how to test these new hooks and functions. All the files we use are available on [github](TODO).
+In this first part we will build a little project using all these new hooks. In the second and third parts we will learn how to test these new hooks and functions. All the files we use are available on [github](https://github.com/peterlidee/mocking-useRouter-useSearchParams-next-13).
 
 ## The plan
 
@@ -14,7 +14,7 @@ Clicking a button pushes a new route with a `sortOrder` parameter to the router:
 
 I used a fresh `create-next-app` (13.4.8) install with typescript and eslint. Cleaned out the boilerplate, added all `Jest` packages, added `eslint` packages for `Jest` and configured them.
 
-Note: I originally tried building this with radio inputs but due to a bug in `Next 13`, it didn't work properly. I left the files in the repo in case you are interested (TODO link).
+Note: I originally tried building this with radio inputs but due to a bug in `Next 13`, it didn't work properly. I left the [files in the repo](https://github.com/peterlidee/mocking-useRouter-useSearchParams-next-13/tree/main/app/sortListBugged) in case you are interested.
 
 ## Get query strings
 

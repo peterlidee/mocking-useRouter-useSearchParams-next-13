@@ -2,7 +2,7 @@
 
 In the [previous part](TODO) we setup an example of a little project that uses the `searchParams` page prop, the `useSearchParams` hook and the `useRouter` hook. We went over all the files to get a good understanding how everything works.
 
-In this part, we will test all of the files, functions and hooks. The files and test can be found on [github](TODO).
+In this part, we will test all of the files, functions and hooks. The files and test can be found on [github](https://github.com/peterlidee/mocking-useRouter-useSearchParams-next-13/tree/main).
 
 ## Overview
 
@@ -24,7 +24,7 @@ Custom Hook:
 
 As we talked about in the previous chapter, I wrote the code in such a way that `searchParams`, `useSearchParams` and `useRouter` are nicely separated from our `jsx` in functions and a custom hook. Testing these functions will be the focus of this part. In the third part we will test our custom hook.
 
-While we will not review the tests of our components, they do exist. You can view them in on [github](TODO). The test files are in a `__test__` folder on the same root as the component files.
+While we will not review the tests of our components, they do exist. You can view them in on [github](https://github.com/peterlidee/mocking-useRouter-useSearchParams-next-13/tree/main). The test files are in a `__test__` folder on the same root as the component files.
 
 ## validateSortOrder()
 
